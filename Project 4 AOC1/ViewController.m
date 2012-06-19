@@ -8,9 +8,9 @@
 
 #import "ViewController.h"
 
-#define loginButt 0
-#define dateButt 1
-#define infoButt 2
+#define loginTag 0
+#define dateTag 1
+#define infoTag 2
 @interface ViewController ()
 
 @end
@@ -45,7 +45,7 @@
     if (LoginButton != nil)
     {
         LoginButton.frame = CGRectMake(235.0f, 85.0f, 65.0f, 30.0f);
-        LoginButton.tag = loginButt;
+        LoginButton.tag = loginTag;
         [LoginButton setTitle:@"Login" forState:UIControlStateNormal];
         [LoginButton addTarget:self action:@selector(onClick:) forControlEvents:(UIControlEventTouchUpInside)];
         
@@ -68,10 +68,29 @@
     {
         dateButton.frame = CGRectMake(0.0f, 325.0f, 100.0f, 30.0f);
         [dateButton setTitle:@"Show Date" forState:UIControlStateNormal];
-        dateButton.tag = dateButt;
+        dateButton.tag = dateTag;
         [dateButton addTarget:self action:@selector(onClick:) forControlEvents:(UIControlEventTouchUpInside)];
         
         [self.view addSubview:dateButton];
+    }
+    
+    infoButton =[UIButton buttonWithType:UIButtonTypeInfoLight];
+    if (infoButton != nil)
+    {
+        infoButton.frame = CGRectMake(0.0f, 375.0f, 25.0f, 25.0f);
+        infoButton.tag = infoTag;
+        [infoButton addTarget:self action:@selector(onClick:) forControlEvents:(UIControlEventTouchUpInside)];
+        
+        [self.view addSubview:infoButton];
+    }
+    infoLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 400.0f, 320.0f, 60.0f)];
+    if (infoLabel != nil)
+    {
+        infoLabel.backgroundColor = [UIColor blackColor];
+        infoLabel.textAlignment = UITextAlignmentCenter;
+        infoLabel.textColor = [UIColor whiteColor];
+        infoLabel.numberOfLines = 2;
+        [self.view addSubview:infoLabel];
     }
     
     [super viewDidLoad];
@@ -81,26 +100,34 @@
 - (void)onClick:(UIButton*)button
 {
     //Login button press
-    if (button.tag == loginButt) {
+    if (button.tag == loginTag) {
         user = [usernameField text];
         if ([user length]==0)
         {
-            newLogininfo = @"Username cannot be empty!";
+            tempString = @"Username cannot be empty!";
         } else {
-            newLogininfo = [[NSString alloc] initWithFormat:@"User: %@ has been logged in.", user];
+            tempString = [[NSString alloc] initWithFormat:@"User: %@ has been logged in.", user];
         }
         
-        userLoginLabel.text = newLogininfo;
+        userLoginLabel.text = tempString;
 
-    }else if (button.tag == dateButt) {
+    }else if (button.tag == dateTag) {
         date = [NSDate date];
         formattedDate = [[NSDateFormatter alloc] init];
         if (formattedDate != nil) {
             [formattedDate setDateFormat:@"MMMM d, yyyy"];
-            userLoginLabel.text = [formattedDate stringFromDate:date];
+            tempString = [formattedDate stringFromDate:date];
+            displayDate = [[UIAlertView alloc] initWithTitle:@"Today's Date" message:tempString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            
+            if (displayDate != nil)
+            {
+                [displayDate show];
+            }
         }
-    }else if(button.tag == infoButt){
+    }else if(button.tag == infoTag){
         
+        tempString = @"This application was created by: Ronaldo Barnes";
+        infoLabel.text = tempString;
     }
         
     

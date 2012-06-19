@@ -11,14 +11,17 @@
 @interface ViewController : UIViewController
 {
     UILabel *usernameLabel;
+    UILabel *infoLabel;
     UILabel *userLoginLabel;
     UITextField *usernameField;
     UIButton *LoginButton;
     UIButton *dateButton;
+    UIButton *infoButton;
     NSString *user;
-    NSString *newLogininfo;
+    NSString *tempString;
     NSDate *date;
     NSDateFormatter *formattedDate;
+    UIAlertView *displayDate;
     
 }
 @end
