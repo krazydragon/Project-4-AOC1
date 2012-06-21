@@ -23,6 +23,7 @@
     self.view.backgroundColor = [UIColor blackColor];
     
     //Username Login
+    //Username Label
     usernameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 50.0f, 100.0f, 25.0f)];
     if (usernameLabel != nil)
     {
@@ -32,7 +33,7 @@
         usernameLabel.textColor = [UIColor whiteColor];
         [self.view addSubview:usernameLabel];
     }
-    
+    //User input
     usernameField = [[UITextField alloc] initWithFrame:CGRectMake(100.0f, 50.0f, 200.0f, 25.0f)];
     if (usernameField != nil)
     {
@@ -40,7 +41,7 @@
         
         [self.view addSubview:usernameField];
     }
-    
+    //Login Button
     LoginButton =[UIButton buttonWithType:UIButtonTypeRoundedRect];
     if (LoginButton != nil)
     {
@@ -51,7 +52,7 @@
         
         [self.view addSubview:LoginButton];
     }
-    
+    //Login text on screen
     userLoginLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 135.0f, 320.0f, 160.0f)];
     if (userLoginLabel != nil)
     {
@@ -73,7 +74,7 @@
         
         [self.view addSubview:dateButton];
     }
-    
+    //Display info
     infoButton =[UIButton buttonWithType:UIButtonTypeInfoLight];
     if (infoButton != nil)
     {
@@ -110,12 +111,13 @@
         }
         
         userLoginLabel.text = tempString;
-
+    
+    //Date button press
     }else if (button.tag == dateTag) {
         date = [NSDate date];
         formattedDate = [[NSDateFormatter alloc] init];
         if (formattedDate != nil) {
-            [formattedDate setDateFormat:@"MMMM d, yyyy"];
+            [formattedDate setDateFormat:@"EEE, MMMM d, yyyy hh:mm aaa"];
             tempString = [formattedDate stringFromDate:date];
             displayDate = [[UIAlertView alloc] initWithTitle:@"Today's Date" message:tempString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             
@@ -124,6 +126,8 @@
                 [displayDate show];
             }
         }
+        
+    //Info button press
     }else if(button.tag == infoTag){
         
         tempString = @"This application was created by: Ronaldo Barnes";

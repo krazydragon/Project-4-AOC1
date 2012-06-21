@@ -10,17 +10,23 @@
 
 @interface ViewController : UIViewController
 {
+    //Labels
     UILabel *usernameLabel;
     UILabel *infoLabel;
     UILabel *userLoginLabel;
+    //Text Fields
     UITextField *usernameField;
+    //Buttons
     UIButton *LoginButton;
     UIButton *dateButton;
     UIButton *infoButton;
+    //Strings
     NSString *user;
     NSString *tempString;
+    //Create Date
     NSDate *date;
     NSDateFormatter *formattedDate;
+    //Alert
     UIAlertView *displayDate;
     
 }
